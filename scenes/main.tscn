@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf7p01ky2opg4"]
+
+[ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://player.tscn" id="1_acqvd"]
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Player" parent="World" instance=ExtResource("1_acqvd")]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
