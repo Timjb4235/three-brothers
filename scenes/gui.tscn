@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://6fyiks8p35rc"]
+
+[ext_resource type="Script" path="res://scripts/laptimer.gd" id="1_ltvdl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_afb7h"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Laptimer" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_afb7h")
+horizontal_alignment = 2
+script = ExtResource("1_ltvdl")
