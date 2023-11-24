@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmsk4f5x8q77p"]
+
+[ext_resource type="Script" path="res://scripts/racetrack.gd" id="1_6hoh6"]
+
+[sub_resource type="Curve2D" id="Curve2D_x2siw"]
+_data = {
+"points": PackedVector2Array(-106.437, -23.5969, 106.437, 23.5969, 524, 182, -73.2909, -24.5407, 73.2909, 24.5407, 759, 180, -4.71937, -78.3416, 4.71937, 78.3416, 884, 340, 136.187, 22.653, -136.187, -22.653, 720, 502, 47.5721, -16.0459, -47.5721, 16.0459, 504, 549, 18.6557, 283.162, -18.6557, -283.162, 211, 364, 0, 0, 0, 0, 524, 182)
+}
+point_count = 7
+
+[node name="Racetrack" type="Node2D"]
+script = ExtResource("1_6hoh6")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_x2siw")
