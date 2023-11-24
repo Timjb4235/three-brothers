@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf7p01ky2opg4"]
+[gd_scene load_steps=3 format=3 uid="uid://cf7p01ky2opg4"]
 
-[ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://player.tscn" id="1_acqvd"]
+[ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://scenes/player.tscn" id="1_acqvd"]
+[ext_resource type="PackedScene" uid="uid://cmsk4f5x8q77p" path="res://scenes/racetrack.tscn" id="2_smrmn"]
 
 [node name="Main" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="Player" parent="World" instance=ExtResource("1_acqvd")]
+
+[node name="Racetrack" parent="World" instance=ExtResource("2_smrmn")]
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
