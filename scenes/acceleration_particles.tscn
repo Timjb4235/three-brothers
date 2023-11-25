@@ -1,15 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://54rp8r45te6"]
+[gd_scene load_steps=7 format=3 uid="uid://54rp8r45te6"]
+
+[ext_resource type="Texture2D" uid="uid://uigsassnf7ok" path="res://assets/basic_particle.png" id="1_jlkgx"]
+
+[sub_resource type="Gradient" id="Gradient_0jyey"]
+offsets = PackedFloat32Array(0, 0.340741, 0.659259, 0.988571, 1)
+colors = PackedColorArray(0.952941, 0.886275, 0.219608, 1, 0.941176, 0.141176, 0.211765, 1, 0.926844, 0, 0.204434, 1, 0.852085, 0.475697, 0.236883, 0.302857, 0.819608, 0.682353, 0.25098, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hk7lj"]
+gradient = SubResource("Gradient_0jyey")
+
+[sub_resource type="Curve" id="Curve_jwvli"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.73494, 0.8), -1.09211, -1.09211, 0, 0, Vector2(0.831325, 0.568421), -2.09684, -2.09684, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_i0m71"]
+curve = SubResource("Curve_jwvli")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxj1w"]
+lifetime_randomness = 0.05
+emission_shape = 3
+emission_box_extents = Vector3(1, 5, 1)
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+direction = Vector3(1, 0, 1)
+spread = 20.0
+gravity = Vector3(0, 0.98, 0)
+initial_velocity_min = -100.0
+initial_velocity_max = -100.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p8awu"]
+scale_min = 0.8
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_i0m71")
+color_ramp = SubResource("GradientTexture1D_hk7lj")
 
 [node name="AccelerationParticles" type="GPUParticles2D"]
+position = Vector2(167, 92)
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_dxj1w")
-texture = SubResource("PlaceholderTexture2D_p8awu")
+texture = ExtResource("1_jlkgx")
+lifetime = 0.2
 speed_scale = 1.65
-trail_enabled = true
+local_coords = true
+trail_lifetime = 0.01
