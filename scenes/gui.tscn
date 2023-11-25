@@ -1,7 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkxa5avk0dlur"]
 
 [ext_resource type="Script" path="res://scripts/laptimer.gd" id="1_ltvdl"]
+[ext_resource type="Script" path="res://scripts/gui.gd" id="1_o2ksq"]
 [ext_resource type="Script" path="res://scripts/lapcounter.gd" id="2_18tb1"]
+[ext_resource type="Script" path="res://scripts/gameend.gd" id="3_x0cwf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afb7h"]
 font_size = 48
@@ -14,6 +16,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_o2ksq")
 
 [node name="LapTimer" type="Label" parent="."]
 layout_mode = 0
@@ -36,3 +39,9 @@ text = "0 / 10"
 label_settings = SubResource("LabelSettings_ylyht")
 vertical_alignment = 2
 script = ExtResource("2_18tb1")
+
+[node name="GameEnd" type="PopupMenu" parent="."]
+initial_position = 1
+size = Vector2i(200, 200)
+always_on_top = true
+script = ExtResource("3_x0cwf")

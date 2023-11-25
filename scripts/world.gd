@@ -3,14 +3,18 @@ extends Node
 @onready var player: CharacterBody2D = get_node("Player")
 @onready var racetrack: Node = get_node("Racetrack")
 
+
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	player.start(racetrack)
-	save_score("Joel", "Slow")
-	load_scores()
 
-func _process(_delta):
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
 	pass
 
+"""
 func save_score(pilot, time):
 	# File access needs to be read-write to add to the end, but needs to be write only to create!
 	var f = FileAccess.open("user://highscores.save", FileAccess.READ_WRITE)
@@ -26,3 +30,4 @@ func load_scores():
 			var line = f.get_line()
 			print(line)
 		f.close()
+"""
