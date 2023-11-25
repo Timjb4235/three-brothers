@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://buvcruwwghpbq"]
+[gd_scene load_steps=6 format=3 uid="uid://buvcruwwghpbq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h2hqr"]
 [ext_resource type="PackedScene" uid="uid://b3433rfmiu4wf" path="res://scenes/acceleration_particles.tscn" id="2_f4bbw"]
+[ext_resource type="Script" path="res://scenes/CollisionPlayer.gd" id="3_k5ll6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0ni0u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffh1g"]
-size = Vector2(84, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67tur"]
+radius = 17.0
+height = 82.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_h2hqr")
@@ -21,4 +23,6 @@ z_index = -1
 position = Vector2(-43, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ffh1g")
+rotation = 4.71239
+shape = SubResource("CapsuleShape2D_67tur")
+script = ExtResource("3_k5ll6")

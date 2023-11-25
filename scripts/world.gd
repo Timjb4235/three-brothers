@@ -12,14 +12,14 @@ func _process(_delta):
 	pass
 
 func save_score(pilot, time):
-	var f = FileAccess.open("res://savegame.save", FileAccess.READ_WRITE)
+	var f = FileAccess.open("user://highscores.save", FileAccess.READ_WRITE)
 	if f and f.is_open():
 		f.seek_end()
 		f.store_line("{0}, {1}".format([pilot, time], "{_}"))
 		f.close()
 	
 func load_scores():
-	var f = FileAccess.open("res://savegame.save", FileAccess.READ)
+	var f = FileAccess.open("user://highscores.save", FileAccess.READ)
 	if f and f.is_open():
 		while not f.eof_reached():
 			var line = f.get_line()
