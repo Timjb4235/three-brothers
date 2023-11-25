@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 const INITIAL_SPEED = 50
-const FRICTION = 20
-const ACCEL_STRENGTH = 10
-const ROTATION_STRENGTH = 3.5
-const MAX_SPEED = 500
+const FRICTION = 19
+const ACCEL_STRENGTH = 20
+const ROTATION_STRENGTH = 5
+const MAX_SPEED = 600
 var acceleration = Vector2(0, 0)
 var rotation_input = 0
 var accel_input = 0
@@ -13,11 +13,13 @@ var lap_progress:float
 var previous_progress:float 
 var lap_count = 0
 var max_lap = 0
+var bounce_timer = 0
 signal lap_finished
 
 # collision_layer and collision_mask defaults are 1
 
 @onready var accel_particles: GPUParticles2D = get_node("AccelerationParticles")
+@onready var collision_shape: CollisionShape2D = get_node("CollisionShape2D")
 
 func _ready():
 	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
@@ -53,10 +55,19 @@ func _physics_process(delta):
 	if collision_info:
 		var overlap_depth = collision_info.get_depth()
 		var collision_normal = collision_info.get_normal()
-		velocity = velocity.bounce(collision_normal)
-		
-		# Try to ensure we're not gonna collide with the wall again straight away
-		position += collision_normal * overlap_depth * 1.1
+		if bounce_timer == 0:
+			velocity = velocity.bounce(collision_normal)
+			collision_shape.set_disabled(true)
+			
+			# Try to ensure we're not gonna collide with the wall again straight away
+			position += collision_normal * overlap_depth * 1.1
+			bounce_timer = 2
+			
+	# Temporarily disable collisions after a recent bounce
+	if bounce_timer > 0:
+		bounce_timer -= 1
+	else:
+		collision_shape.set_disabled(false)
 
 # Receives input from the player via arrow keys
 func _get_input():
