@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://buvcruwwghpbq"]
+[gd_scene load_steps=4 format=3 uid="uid://buvcruwwghpbq"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_h2hqr"]
-[ext_resource type="PackedScene" path="res://scenes/acceleration_particles.tscn" id="2_f4bbw"]
-[ext_resource type="Script" path="res://scripts/acceleration_particles.gd" id="3_tsco2"]
+[ext_resource type="PackedScene" uid="uid://54rp8r45te6" path="res://scenes/acceleration_particles.tscn" id="2_f4bbw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_abtl7"]
 
@@ -18,4 +17,4 @@ scale = Vector2(27, 11)
 texture = SubResource("PlaceholderTexture2D_abtl7")
 
 [node name="AccelerationParticles" parent="." instance=ExtResource("2_f4bbw")]
-script = ExtResource("3_tsco2")
+script = null

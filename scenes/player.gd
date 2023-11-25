@@ -10,6 +10,8 @@ var rotation_input = 0
 var accel_input = 0
 var direction_change = 0
 
+#@onready var accel_particles: GPUParticles2D = get_node("AccelerationParticles")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity = Vector2(initial_speed * cos(deg_to_rad(rotation)), initial_speed * sin(deg_to_rad(rotation)))
@@ -23,6 +25,8 @@ func _process(delta):
 	if velocity.length() > max_speed:
 		velocity = transform.x * max_speed
 	move_and_collide(velocity * delta)
+	
+	#accel_particles.emitting = true #accel_input > 0
 	
 # Receives input from the player via arrow keys
 func get_input():
