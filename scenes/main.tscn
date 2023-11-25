@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf7p01ky2opg4"]
 
 [ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://scenes/player.tscn" id="1_acqvd"]
-[ext_resource type="PackedScene" path="res://scenes/racetrack.tscn" id="2_smrmn"]
+[ext_resource type="PackedScene" uid="uid://cmsk4f5x8q77p" path="res://scenes/racetrack.tscn" id="2_smrmn"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_x05w1"]
 [ext_resource type="PackedScene" path="res://scenes/gui.tscn" id="3_tf0ds"]
 

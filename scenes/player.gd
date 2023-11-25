@@ -12,6 +12,8 @@ var accel_input = 0
 # var spin = 0
 # collision_layer and collision_mask defaults are 1
 
+@onready var accel_particles: GPUParticles2D = get_node("AccelerationParticles")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
@@ -42,6 +44,9 @@ func _physics_process(delta):
 		#else:
 		#	spin -= abs(1 - collision_angle) * SPIN_MULTIPLIER
 		#
+
+	accel_particles.emitting = accel_input > 0
+	
 
 
 # Receives input from the player via arrow keys
