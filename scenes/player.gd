@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 const initial_speed = 50
-const friction = 0.99
+const friction = 0.98
 const accel_strength = 5
+const rotation_strength = 2.5
+const max_speed = 250
 var acceleration = Vector2(0, 0)
 var rotation_input = 0
 var accel_input = 0
@@ -12,14 +14,14 @@ var direction_change = 0
 func _ready():
 	velocity = Vector2(initial_speed * cos(deg_to_rad(rotation)), initial_speed * sin(deg_to_rad(rotation)))
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input()
-	rotation += rotation_input * delta
-	print(transform.x)
-	velocity *= friction
+	rotation += rotation_strength * rotation_input * delta
+	velocity *= friction ** delta
 	velocity += transform.x * accel_input
+	if velocity.length() > max_speed:
+		velocity = transform.x * max_speed
 	move_and_collide(velocity * delta)
 	
 # Receives input from the player via arrow keys
