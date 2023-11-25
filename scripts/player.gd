@@ -29,7 +29,7 @@ func start(racetrack):
 	_racetrack = racetrack
 	position = _racetrack.get_start_position()
 
-func _process(delta):
+func _process(_delta):
 	accel_particles.emitting = accel_input > 0
 	lap_progress = _racetrack.get_lap_progress(position)
 	if lap_progress - previous_progress > 0.9:
