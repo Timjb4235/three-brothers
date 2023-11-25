@@ -12,4 +12,5 @@ point_count = 7
 script = ExtResource("1_6hoh6")
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2(32, -48)
 curve = SubResource("Curve2D_x2siw")
