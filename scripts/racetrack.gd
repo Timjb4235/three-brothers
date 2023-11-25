@@ -100,6 +100,9 @@ func rebuild_track():
 	outer_collider.add_child(outer_polygon)
 	add_child(outer_collider)
 
+func get_start_position():
+	return _path.curve.get_point_position(0)
+
 func get_lap_progress(player_position) -> float:
 	var curve_dist = _path.curve.get_closest_offset(player_position)
 	return curve_dist / _path.curve.get_baked_length()
