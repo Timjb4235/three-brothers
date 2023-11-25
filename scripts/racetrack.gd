@@ -97,10 +97,9 @@ func rebuild_track():
 	var outer_polygon := CollisionPolygon2D.new()
 	outer_polygon.polygon = _outer_curve.get_baked_points()
 	outer_polygon.build_mode = CollisionPolygon2D.BUILD_SEGMENTS
-	add_child(outer_polygon)
+	outer_collider.add_child(outer_polygon)
+	add_child(outer_collider)
 
 func get_lap_progress(player_position) -> float:
 	var curve_dist = _path.curve.get_closest_offset(player_position)
 	return curve_dist / _path.curve.get_baked_length()
-	outer_collider.add_child(outer_polygon)
-	add_child(outer_collider)
