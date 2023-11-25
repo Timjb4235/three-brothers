@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://54rp8r45te6"]
+[gd_scene load_steps=3 format=3 uid="uid://54rp8r45te6"]
 
-[ext_resource type="Script" path="res://scripts/accelerationparticles.gd" id="1_d5etx"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxj1w"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p8awu"]
 
 [node name="Acceleration Particles" type="GPUParticles2D"]
-script = ExtResource("1_d5etx")
+process_material = SubResource("ParticleProcessMaterial_dxj1w")
+texture = SubResource("PlaceholderTexture2D_p8awu")
+speed_scale = 1.65
+trail_enabled = true
