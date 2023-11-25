@@ -37,7 +37,7 @@ func _process(delta):
 	if previous_progress - lap_progress > 0.9:
 		lap_count += 1
 	previous_progress = lap_progress
-	if lap_count > max_lap:
+	if lap_count > max_lap and max_lap != Config.GAME_LAPS:
 		max_lap = lap_count
 		lap_finished.emit()
 		
