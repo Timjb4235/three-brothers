@@ -86,12 +86,16 @@ func rebuild_track():
 	_outer_line.add_point(_outer_line.get_point_position(0))
 
 	# Create inner wall collision
+	var inner_collider := StaticBody2D.new()
 	var inner_polygon := CollisionPolygon2D.new()
 	inner_polygon.polygon = _inner_curve.get_baked_points()
-	add_child(inner_polygon)
+	inner_collider.add_child(inner_polygon)
+	add_child(inner_collider)
 
 	# Create outer wall collision
+	var outer_collider := StaticBody2D.new()
 	var outer_polygon := CollisionPolygon2D.new()
 	outer_polygon.polygon = _outer_curve.get_baked_points()
 	outer_polygon.build_mode = CollisionPolygon2D.BUILD_SEGMENTS
-	add_child(outer_polygon)
+	outer_collider.add_child(outer_polygon)
+	add_child(outer_collider)
