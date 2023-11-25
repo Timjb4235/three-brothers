@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-const INITIAL_SPEED = 50
+const INITIAL_SPEED = 0
 const FRICTION = 19
 const ACCEL_STRENGTH = 20
 const ROTATION_STRENGTH = 5
 const MAX_SPEED = 600
-var acceleration = Vector2(0, 0)
+var acceleration = Vector2.ZERO
 var rotation_input = 0
 var accel_input = 0
 var _racetrack: Node2D
@@ -21,12 +21,10 @@ signal lap_finished
 @onready var accel_particles: GPUParticles2D = get_node("AccelerationParticles")
 @onready var collision_shape: CollisionShape2D = get_node("CollisionShape2D")
 
-func _ready():
-	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
-
-func start(racetrack):
+func start(racetrack, game_restarted):
 	_racetrack = racetrack
-	position = _racetrack.get_start_position()
+	game_restarted.connect(_on_game_restarted)
+	_on_game_restarted()
 
 func _process(_delta):
 	accel_particles.emitting = accel_input > 0
@@ -69,9 +67,12 @@ func _physics_process(delta):
 	else:
 		collision_shape.set_disabled(false)
 
-# Receives input from the player via arrow keys
+# Receives input from the player
 func _get_input():
 	rotation_input = Input.get_axis("left", "right")
 	accel_input = ACCEL_STRENGTH * Input.get_axis("down", "up")
 
-
+func _on_game_restarted():
+	position = _racetrack.get_start_position()
+	rotation = 0.0
+	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
