@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://buvcruwwghpbq"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_i7ukt"]
-[ext_resource type="PackedScene" uid="uid://b3433rfmiu4wf" path="res://scenes/acceleration_particles.tscn" id="2_f4bbw"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_h2hqr"]
+[ext_resource type="PackedScene" path="res://scenes/acceleration_particles.tscn" id="2_f4bbw"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_abtl7"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0ni0u"]
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_i7ukt")
+script = ExtResource("1_h2hqr")
 
 [node name="CollisionBody" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(14, -5, -10, -5, -11, 4, 14, 5)
@@ -14,8 +14,7 @@ polygon = PackedVector2Array(14, -5, -10, -5, -11, 4, 14, 5)
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0.500001, -0.5)
 scale = Vector2(27, 11)
-texture = SubResource("PlaceholderTexture2D_abtl7")
+texture = SubResource("PlaceholderTexture2D_0ni0u")
 
 [node name="AccelerationParticles" parent="." instance=ExtResource("2_f4bbw")]
-z_index = -1
-position = Vector2(-13, 0)
+position = Vector2(-16, -1)
