@@ -1,4 +1,5 @@
 extends Label
+
 var lap = 0
 
 func _ready():

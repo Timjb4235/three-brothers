@@ -76,3 +76,5 @@ func _on_game_restarted():
 	position = _racetrack.get_start_position()
 	rotation = 0.0
 	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
+	lap_count = 0
+	max_lap = 0
