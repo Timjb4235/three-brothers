@@ -9,8 +9,8 @@ var acceleration = Vector2.ZERO
 var rotation_input = 0
 var accel_input = 0
 var _racetrack: Node2D
-var lap_progress:float 
-var previous_progress:float 
+var lap_progress: float 
+var previous_progress: float 
 var lap_count = 0
 var max_lap = 0
 var bounce_timer = 0
@@ -78,3 +78,5 @@ func _on_game_restarted():
 	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
 	lap_count = 0
 	max_lap = 0
+	lap_progress = 0.0
+	previous_progress = 0.0
