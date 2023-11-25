@@ -5,11 +5,9 @@ const FRICTION = 20
 const ACCEL_STRENGTH = 10
 const ROTATION_STRENGTH = 3.5
 const MAX_SPEED = 500
-# const SPIN_MULTIPLIER = 5
 var acceleration = Vector2(0, 0)
 var rotation_input = 0
 var accel_input = 0
-# var spin = 0
 var _racetrack: Node2D
 var lap_progress:float 
 var previous_progress:float 
@@ -21,7 +19,6 @@ signal lap_finished
 
 @onready var accel_particles: GPUParticles2D = get_node("AccelerationParticles")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
 
@@ -41,35 +38,25 @@ func _process(_delta):
 		max_lap = lap_count
 		lap_finished.emit()
 		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	_get_input()
 	rotation += ROTATION_STRENGTH * rotation_input * delta
-	# rotation += spin * delta
-	# if rotation_input != 0 and spin > 0:
-	# 	spin *= 0.3 ** delta
-	# if spin < 0.1:
-	# 	spin = 0
-	# velocity *= FRICTION ** delta
+
 	if velocity.length() > FRICTION * delta:
 		velocity = velocity - FRICTION * delta * velocity.normalized()
 	velocity += transform.x * accel_input
 	if velocity.length() > MAX_SPEED:
-		print("max")
 		velocity = (velocity / velocity.length()) * MAX_SPEED
+
 	var collision_info = move_and_collide(velocity * delta)
+
 	if collision_info:
-		velocity = velocity.bounce(collision_info.get_normal())
-		#var collision_angle = velocity.normalized().dot(collision_info.get_normal())
-		#if velocity.normalized().angle() - collision_info.get_normal().angle() > 0:
-		#	spin -= abs(1 - collision_angle) * SPIN_MULTIPLIER
-		#else:
-		#	spin -= abs(1 - collision_angle) * SPIN_MULTIPLIER
-		#
-
-	
-	
-
+		var overlap_depth = collision_info.get_depth()
+		var collision_normal = collision_info.get_normal()
+		velocity = velocity.bounce(collision_normal)
+		
+		# Try to ensure we're not gonna collide with the wall again straight away
+		position += collision_normal * overlap_depth * 1.1
 
 # Receives input from the player via arrow keys
 func _get_input():
