@@ -10,3 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func save_score(name, time):
+	var save_scores = FileAccess.open("res://savegame.save", FileAccess.WRITE)
+	save_scores.store_line("{0}, {1}".format([name, time], "{_}"))

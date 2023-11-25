@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const INITIAL_SPEED = 50
-const FRICTION = 0.98
+const FRICTION = 20
 const ACCEL_STRENGTH = 5
 const ROTATION_STRENGTH = 2.5
 const MAX_SPEED = 250
@@ -48,7 +48,9 @@ func _physics_process(delta):
 	# 	spin *= 0.3 ** delta
 	# if spin < 0.1:
 	# 	spin = 0
-	velocity *= FRICTION ** delta
+	# velocity *= FRICTION ** delta
+	if velocity.length() > FRICTION * delta:
+		velocity = velocity - FRICTION * delta * velocity.normalized()
 	velocity += transform.x * accel_input
 	if velocity.length() > MAX_SPEED:
 		velocity = (velocity / velocity.length()) * MAX_SPEED
