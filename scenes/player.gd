@@ -1,35 +1,47 @@
 extends CharacterBody2D
 
-const initial_speed = 50
-const friction = 0.99
-const accel_strength = 5
+const INITIAL_SPEED = 50
+const FRICTION = 0.98
+const ACCEL_STRENGTH = 5
+const ROTATION_STRENGTH = 2.5
+const MAX_SPEED = 250
+const rotation_strength = 2.5
+const max_speed = 250
 var acceleration = Vector2(0, 0)
 var rotation_input = 0
 var accel_input = 0
 var direction_change = 0
+# collision_layer and collision_mask defaults are 1
 
 @onready var accel_particles: GPUParticles2D = get_node("AccelerationParticles")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity = Vector2(initial_speed * cos(deg_to_rad(rotation)), initial_speed * sin(deg_to_rad(rotation)))
+	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
 
+@warning_ignore("unused_parameter")
+func _process(delta):
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	get_input()
-	rotation += rotation_input * delta
-	print(transform.x)
-	velocity *= friction
+func _physics_process(delta):
+	_get_input()
+	rotation += ROTATION_STRENGTH * rotation_input * delta
+	velocity *= FRICTION ** delta
 	velocity += transform.x * accel_input
-	move_and_collide(velocity * delta)
+	if velocity.length() > MAX_SPEED:
+		velocity = (velocity / velocity.length()) * MAX_SPEED
+	var collision_info = move_and_collide(velocity * delta)
+	if collision_info:
+		velocity = velocity.bounce(collision_info.get_normal())
 
 	accel_particles.emitting = accel_input > 0
 	
+
 # Receives input from the player via arrow keys
-func get_input():
+func _get_input():
 	rotation_input = Input.get_axis("left", "right")
-	accel_input = accel_strength * Input.get_axis("down", "up")
+	accel_input = ACCEL_STRENGTH * Input.get_axis("down", "up")
 	print(accel_input)
 	print(rotation_input)
 
