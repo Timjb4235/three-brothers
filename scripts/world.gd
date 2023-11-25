@@ -12,6 +12,7 @@ func _process(_delta):
 	pass
 
 func save_score(pilot, time):
+	# File access needs to be read-write to add to the end, but needs to be write only to create!
 	var f = FileAccess.open("user://highscores.save", FileAccess.READ_WRITE)
 	if f and f.is_open():
 		f.seek_end()
