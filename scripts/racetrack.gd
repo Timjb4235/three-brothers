@@ -59,3 +59,7 @@ func rebuild_track():
 	for i in _tessellated_curve_points.size():
 		var this_point = _tessellated_curve_points[i];
 		_track_line.add_point(this_point)
+
+func get_lap_progress(player_position) -> float:
+	var curve_dist = _path.curve.get_closest_offset(player_position)
+	return curve_dist / _path.curve.get_baked_length()
