@@ -10,7 +10,7 @@ var acceleration = Vector2(0, 0)
 var rotation_input = 0
 var accel_input = 0
 # var spin = 0
-var racetrack: Node2D
+var _racetrack: Node2D
 var lap_progress:float 
 var previous_progress:float 
 var lap_count = 0
@@ -21,12 +21,17 @@ var lap_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
+	print("player ready")
+	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
+
+func start(racetrack):
+	_racetrack = racetrack
+	position = _racetrack.get_start_position()
 
 @warning_ignore("unused_parameter")
 func _process(delta):
 	accel_particles.emitting = accel_input > 0
-	lap_progress = racetrack.get_lap_progress(position)
+	lap_progress = _racetrack.get_lap_progress(position)
 	if lap_progress - previous_progress > 0.9:
 		lap_count -= 1
 	if previous_progress - lap_progress > 0.9:
