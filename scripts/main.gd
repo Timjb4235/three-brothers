@@ -11,7 +11,7 @@ func _ready():
 	gui.set_game_ended(game_ended)
 	
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		var current_mode = DisplayServer.window_get_mode()
 		if current_mode == DisplayServer.WINDOW_MODE_WINDOWED:

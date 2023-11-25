@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6fyiks8p35rc"]
+[gd_scene load_steps=5 format=3 uid="uid://dkxa5avk0dlur"]
 
 [ext_resource type="Script" path="res://scripts/laptimer.gd" id="1_ltvdl"]
 [ext_resource type="Script" path="res://scripts/gui.gd" id="1_o2ksq"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://scripts/gameend.gd" id="3_x0cwf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afb7h"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ylyht"]
+font_size = 48
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -16,20 +20,23 @@ script = ExtResource("1_o2ksq")
 
 [node name="LapTimer" type="Label" parent="."]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 53.0
-offset_bottom = 31.0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 405.0
+offset_bottom = 192.0
+text = "00:00:00"
 label_settings = SubResource("LabelSettings_afb7h")
-horizontal_alignment = 2
 script = ExtResource("1_ltvdl")
 
 [node name="LapCounter" type="Label" parent="."]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 1006.0
-offset_right = 135.0
-offset_bottom = 1069.0
+offset_left = 34.0
+offset_top = 929.0
+offset_right = 328.0
+offset_bottom = 1058.0
+theme_override_font_sizes/font_size = 72
+text = "0 / 10"
+label_settings = SubResource("LabelSettings_ylyht")
 vertical_alignment = 2
 script = ExtResource("2_18tb1")
 
