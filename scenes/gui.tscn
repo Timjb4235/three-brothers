@@ -41,6 +41,7 @@ vertical_alignment = 2
 script = ExtResource("2_18tb1")
 
 [node name="GameEnd" type="PopupMenu" parent="."]
+title = "YOU WIN!"
 initial_position = 1
 size = Vector2i(200, 200)
 always_on_top = true
