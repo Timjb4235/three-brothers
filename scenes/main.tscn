@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf7p01ky2opg4"]
+[gd_scene load_steps=6 format=3 uid="uid://cf7p01ky2opg4"]
 
 [ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://scenes/player.tscn" id="1_acqvd"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_krfsn"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ug30q"]
 [ext_resource type="PackedScene" uid="uid://cmsk4f5x8q77p" path="res://scenes/racetrack.tscn" id="2_smrmn"]
 [ext_resource type="PackedScene" uid="uid://6fyiks8p35rc" path="res://scenes/gui.tscn" id="3_tf0ds"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_krfsn")
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("1_ug30q")
@@ -43,3 +45,5 @@ scale = Vector2(1.14583, 0.960993)
 polygon = PackedVector2Array(6.99842, 645.542, -29.0016, 656.988, -29.0016, -32.9233, 2.99842, -35.0044)
 
 [node name="GUI" parent="." instance=ExtResource("3_tf0ds")]
+
+[connection signal="lap_finished" from="World/Player" to="." method="_on_player_lap_finished"]

@@ -14,6 +14,8 @@ var _racetrack: Node2D
 var lap_progress:float 
 var previous_progress:float 
 var lap_count = 0
+var max_lap = 0
+signal lap_finished
 
 # collision_layer and collision_mask defaults are 1
 
@@ -21,8 +23,7 @@ var lap_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("player ready")
-	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
+		velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
 
 func start(racetrack):
 	_racetrack = racetrack
@@ -37,8 +38,10 @@ func _process(delta):
 	if previous_progress - lap_progress > 0.9:
 		lap_count += 1
 	previous_progress = lap_progress
-	print("lap = ", lap_count)
-
+	if lap_count > max_lap:
+		max_lap = lap_count
+		lap_finished.emit()
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	_get_input()

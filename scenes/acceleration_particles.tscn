@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3433rfmiu4wf"]
+[gd_scene load_steps=7 format=3 uid="uid://54rp8r45te6"]
 
 [ext_resource type="Texture2D" uid="uid://uigsassnf7ok" path="res://assets/basic_particle.png" id="1_jlkgx"]
 
@@ -41,3 +41,4 @@ texture = ExtResource("1_jlkgx")
 lifetime = 0.2
 speed_scale = 1.65
 local_coords = true
+trail_lifetime = 0.01
