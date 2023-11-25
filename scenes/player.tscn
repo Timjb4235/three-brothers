@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://buvcruwwghpbq"]
+[gd_scene load_steps=4 format=3 uid="uid://buvcruwwghpbq"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_h2hqr"]
+[ext_resource type="PackedScene" uid="uid://54rp8r45te6" path="res://scenes/acceleration_particles.tscn" id="2_f4bbw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_abtl7"]
 
@@ -14,3 +15,5 @@ polygon = PackedVector2Array(13, 11, -1, -19, -14, 11)
 position = Vector2(2.38419e-07, -1.5)
 scale = Vector2(16, 27)
 texture = SubResource("PlaceholderTexture2D_abtl7")
+
+[node name="Acceleration Particles" parent="." instance=ExtResource("2_f4bbw")]
