@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 const INITIAL_SPEED = 50
 const FRICTION = 20
-const ACCEL_STRENGTH = 5
-const ROTATION_STRENGTH = 2.5
-const MAX_SPEED = 250
+const ACCEL_STRENGTH = 10
+const ROTATION_STRENGTH = 3.5
+const MAX_SPEED = 500
 # const SPIN_MULTIPLIER = 5
 var acceleration = Vector2(0, 0)
 var rotation_input = 0
@@ -55,6 +55,7 @@ func _physics_process(delta):
 		velocity = velocity - FRICTION * delta * velocity.normalized()
 	velocity += transform.x * accel_input
 	if velocity.length() > MAX_SPEED:
+		print("max")
 		velocity = (velocity / velocity.length()) * MAX_SPEED
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
