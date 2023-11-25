@@ -13,8 +13,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	gametime += delta
-	minutes = floor(gametime / 60)
-	seconds = floor(gametime - minutes*60)
-	# milliseconds = tba
-	text = str(minutes, " ' ", seconds, " '' ") 	
+	minutes = gametime / 60
+	seconds = fmod(gametime,60)
+	milliseconds = fmod(gametime,1)*100
+	text = str("%02d,%02d,%02d") % [minutes,seconds,milliseconds] 	
 	
