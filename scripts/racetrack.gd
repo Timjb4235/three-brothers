@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 # Width of the track, in pixels
 const TRACK_WIDTH: float = 100
@@ -39,6 +39,7 @@ func _ready():
 	add_child(_inner_line)
 	add_child(_outer_line)
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	pass
 
@@ -68,18 +69,29 @@ func rebuild_track():
 	# Create central line
 	for i in _tessellated_curve_points.size():
 		var this_point = _tessellated_curve_points[i];
-		_track_line.add_point(_path.global_position + this_point)
+		_track_line.add_point(this_point)
 
 	# Create inner line
 	for i in _inner_curve.point_count:
 		var this_point = _inner_curve.get_point_position(i)
-		_inner_line.add_point(_path.global_position + this_point)
+		_inner_line.add_point(this_point)
 
 	# Create outer line
 	for i in _outer_curve.point_count:
 		var this_point = _outer_curve.get_point_position(i)
-		_outer_line.add_point(_path.global_position + this_point)
+		_outer_line.add_point(this_point)
 
 	# Loop lines back to start
 	_inner_line.add_point(_inner_line.get_point_position(0))
 	_outer_line.add_point(_outer_line.get_point_position(0))
+
+	# Create inner wall collision
+	var inner_polygon := CollisionPolygon2D.new()
+	inner_polygon.polygon = _inner_curve.get_baked_points()
+	add_child(inner_polygon)
+
+	# Create outer wall collision
+	var outer_polygon := CollisionPolygon2D.new()
+	outer_polygon.polygon = _outer_curve.get_baked_points()
+	outer_polygon.build_mode = CollisionPolygon2D.BUILD_SEGMENTS
+	add_child(outer_polygon)
