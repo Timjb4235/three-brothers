@@ -17,4 +17,3 @@ scale = Vector2(27, 11)
 texture = SubResource("PlaceholderTexture2D_abtl7")
 
 [node name="AccelerationParticles" parent="." instance=ExtResource("2_f4bbw")]
-script = null
