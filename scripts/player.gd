@@ -23,13 +23,12 @@ signal lap_finished
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
+	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
 
 func start(racetrack):
 	_racetrack = racetrack
 	position = _racetrack.get_start_position()
 
-@warning_ignore("unused_parameter")
 func _process(delta):
 	accel_particles.emitting = accel_input > 0
 	lap_progress = _racetrack.get_lap_progress(position)

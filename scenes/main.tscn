@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://scenes/player.tscn" id="1_acqvd"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_krfsn"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ug30q"]
-[ext_resource type="PackedScene" uid="uid://c44xsohkjf6li" path="res://scenes/racetrack.tscn" id="2_smrmn"]
+[ext_resource type="PackedScene" uid="uid://cmsk4f5x8q77p" path="res://scenes/racetrack.tscn" id="2_smrmn"]
 [ext_resource type="PackedScene" path="res://scenes/gui.tscn" id="3_tf0ds"]
 
 [node name="Main" type="Node"]
@@ -15,34 +15,6 @@ script = ExtResource("1_ug30q")
 [node name="Player" parent="World" instance=ExtResource("1_acqvd")]
 
 [node name="Racetrack" parent="World" instance=ExtResource("2_smrmn")]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="World"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/StaticBody2D"]
-position = Vector2(0.00158691, 28.639)
-scale = Vector2(0.999999, 0.960993)
-polygon = PackedVector2Array(1230, -30.8421, 1188, 646.582, 1152, 654.907, 1150, -29.8015)
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="World"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/StaticBody2D3"]
-position = Vector2(-58823.1, -185.703)
-scale = Vector2(52.2444, 0.267476)
-polygon = PackedVector2Array(1151, 1, 1148, 563, 1125.85, 610.824, 1126.02, -3.83423)
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="World"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/StaticBody2D4"]
-position = Vector2(0.00158691, 28.639)
-scale = Vector2(0.999999, 0.960993)
-polygon = PackedVector2Array(-9.0016, 641.379, 1151, 641.379, 1179, 768.331, -22.0016, 712.14)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="World"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/StaticBody2D2"]
-position = Vector2(-34.394, 28.639)
-scale = Vector2(1.14583, 0.960993)
-polygon = PackedVector2Array(6.99842, 645.542, -29.0016, 656.988, -29.0016, -32.9233, 2.99842, -35.0044)
 
 [node name="GUI" parent="." instance=ExtResource("3_tf0ds")]
 

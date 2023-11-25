@@ -1,7 +1,7 @@
 extends Node2D
 
 # Width of the track, in pixels
-const TRACK_WIDTH: float = 100
+const TRACK_WIDTH: float = 200
 
 # A reference to the Path2D node that defines the racetrack curve.
 @onready var _path: Path2D = get_node("Path2D")
@@ -35,10 +35,11 @@ var _outer_line := Line2D.new()
 
 func _ready():
 	rebuild_track()
+
 	#add_child(_track_line)
 	add_child(_inner_line)
 	add_child(_outer_line)
-
+	
 @warning_ignore("unused_parameter")
 func _process(delta):
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://6fyiks8p35rc"]
+[gd_scene load_steps=4 format=3 uid="uid://dkxa5avk0dlur"]
 
 [ext_resource type="Script" path="res://scripts/laptimer.gd" id="1_ltvdl"]
 [ext_resource type="Script" path="res://scripts/lapcounter.gd" id="2_18tb1"]
@@ -23,9 +23,9 @@ script = ExtResource("1_ltvdl")
 
 [node name="LapCounter" type="Label" parent="."]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 559.0
-offset_right = 139.0
-offset_bottom = 622.0
+offset_left = 13.0
+offset_top = 1006.0
+offset_right = 135.0
+offset_bottom = 1069.0
 vertical_alignment = 2
 script = ExtResource("2_18tb1")
