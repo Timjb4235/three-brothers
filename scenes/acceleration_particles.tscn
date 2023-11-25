@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://54rp8r45te6"]
+
+[ext_resource type="Script" path="res://scripts/accelerationparticles.gd" id="1_d5etx"]
+
+[node name="Acceleration Particles" type="GPUParticles2D"]
+script = ExtResource("1_d5etx")
