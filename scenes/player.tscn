@@ -16,4 +16,4 @@ position = Vector2(0.500001, -0.5)
 scale = Vector2(27, 11)
 texture = SubResource("PlaceholderTexture2D_abtl7")
 
-[node name="Acceleration Particles" parent="." instance=ExtResource("2_f4bbw")]
+[node name="AccelerationParticles" parent="." instance=ExtResource("2_f4bbw")]

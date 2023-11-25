@@ -31,8 +31,7 @@ func _physics_process(delta):
 		velocity = (velocity / velocity.length()) * MAX_SPEED
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
-		# Collision code goes here
-		pass
+		velocity = velocity.bounce(collision_info.get_normal())
 	
 
 # Receives input from the player via arrow keys
