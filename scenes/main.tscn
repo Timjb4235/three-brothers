@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf7p01ky2opg4"]
+[gd_scene load_steps=5 format=3 uid="uid://cf7p01ky2opg4"]
 
 [ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://scenes/player.tscn" id="1_acqvd"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_ug30q"]
 [ext_resource type="PackedScene" uid="uid://cmsk4f5x8q77p" path="res://scenes/racetrack.tscn" id="2_smrmn"]
 [ext_resource type="PackedScene" uid="uid://6fyiks8p35rc" path="res://scenes/gui.tscn" id="3_tf0ds"]
 
 [node name="Main" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
+script = ExtResource("1_ug30q")
 
 [node name="Player" parent="World" instance=ExtResource("1_acqvd")]
 

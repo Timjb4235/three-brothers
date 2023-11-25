@@ -18,7 +18,4 @@ texture = SubResource("PlaceholderTexture2D_abtl7")
 
 [node name="AccelerationParticles" parent="." instance=ExtResource("2_f4bbw")]
 z_index = -1
-position = Vector2(-13, -1)
-amount = 6
-lifetime = 0.22
-trail_sections = 5
+position = Vector2(-13, 0)
