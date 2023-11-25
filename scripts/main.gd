@@ -25,14 +25,19 @@ func _on_player_lap_finished():
 		game_ended.emit()
 		
 func save_score(name, time):
-	var f = FileAccess.open("res://savegame.save", FileAccess.READ_WRITE)
+	var file_to_check = File.new()
+	var file_exists = file_to_check.file_exists("user://highscores.save")
+	if not file_exists:
+		var f = FileAccess.open("user://highscores.save", FileAccess.WRITE)
+		f.close()	
+	var f = FileAccess.open("user://highscores.save", FileAccess.READ_WRITE)
 	if f and f.is_open():
 		f.seek_end()
 		f.store_line("{0}, {1}".format([name, time], "{_}"))
 		f.close()
 	
 func load_scores():
-	var f = FileAccess.open("res://savegame.save", FileAccess.READ)
+	var f = FileAccess.open("user://highscores.save", FileAccess.READ)
 	if f and f.is_open():
 		var index = 1
 		while not f.eof_reached():
