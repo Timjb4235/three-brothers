@@ -62,8 +62,13 @@ func rebuild_track():
 		_baked_curve_points.append(point_at_offset)
 
 		# Define the inner and outer walls by following the normal in both directions
-		var inner_point = point_at_offset.get_origin() + point_at_offset.x * (TRACK_WIDTH / 2)
-		var outer_point = point_at_offset.get_origin() - point_at_offset.x * (TRACK_WIDTH / 2)
+		var normalized_offset = offset / _path.curve.get_baked_length()
+		var point_scale = _path.calc_point_scale_at_offset(normalized_offset)
+		var half_width = TRACK_WIDTH / 2
+		var scaled_half_width = half_width * point_scale
+		# For now we only scale the outer edge because scaling inner corners is problematic
+		var inner_point = point_at_offset.get_origin() + point_at_offset.x * half_width
+		var outer_point = point_at_offset.get_origin() - point_at_offset.x * scaled_half_width
 		_inner_curve.add_point(inner_point)
 		_outer_curve.add_point(outer_point)
 
