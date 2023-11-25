@@ -8,7 +8,7 @@ orbit_velocity_max = 0.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p8awu"]
 
-[node name="Acceleration Particles" type="GPUParticles2D"]
+[node name="AccelerationParticles" type="GPUParticles2D"]
 process_material = SubResource("ParticleProcessMaterial_dxj1w")
 texture = SubResource("PlaceholderTexture2D_p8awu")
 speed_scale = 1.65
