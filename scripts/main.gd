@@ -10,6 +10,7 @@ func _ready():
 	lapcount.start(player.lap_finished)
 	gui.set_game_ended(game_ended)
 	
+	
 
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_fullscreen"):
@@ -25,12 +26,12 @@ func _on_player_lap_finished():
 		game_ended.emit()
 		
 func save_score(name, time):
-	var file_to_check = File.new()
-	var file_exists = file_to_check.file_exists("user://highscores.save")
-	if not file_exists:
-		var f = FileAccess.open("user://highscores.save", FileAccess.WRITE)
-		f.close()	
-	var f = FileAccess.open("user://highscores.save", FileAccess.READ_WRITE)
+	# var file_to_check = File.new()
+	# var file_exists = file_to_check.file_exists("user://highscores.save")
+	# if not file_exists:
+		# var f = FileAccess.open("user://highscores.save", FileAccess.WRITE)
+		# f.close()	
+	var f = FileAccess.open("user://highscores.save", FileAccess.WRITE_READ)
 	if f and f.is_open():
 		f.seek_end()
 		f.store_line("{0}, {1}".format([name, time], "{_}"))
