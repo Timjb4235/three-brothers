@@ -32,9 +32,12 @@ func start(racetrack):
 func _process(delta):
 	accel_particles.emitting = accel_input > 0
 	lap_progress = _racetrack.get_lap_progress(position)
+	if lap_progress - previous_progress > 0.9:
+		lap_count -= 1
 	if previous_progress - lap_progress > 0.9:
 		lap_count += 1
-	print(lap_count)
+	previous_progress = lap_progress
+	print("lap = ", lap_count)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

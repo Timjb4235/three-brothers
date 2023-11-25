@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://buvcruwwghpbq" path="res://scenes/player.tscn" id="1_acqvd"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ug30q"]
 [ext_resource type="PackedScene" uid="uid://cmsk4f5x8q77p" path="res://scenes/racetrack.tscn" id="2_smrmn"]
-[ext_resource type="PackedScene" path="res://scenes/gui.tscn" id="3_tf0ds"]
+[ext_resource type="PackedScene" uid="uid://6fyiks8p35rc" path="res://scenes/gui.tscn" id="3_tf0ds"]
 
 [node name="Main" type="Node"]
 
