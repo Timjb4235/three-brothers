@@ -1,10 +1,33 @@
 extends CharacterBody2D
 
-const INITIAL_SPEED = 0
-const FRICTION = 19
-const ACCEL_STRENGTH = 20
-const ROTATION_STRENGTH = 5
-const MAX_SPEED = 600
+const STANDARDSHIP = {
+	"INITIAL_SPEED": 0,
+	"FRICTION": 19,
+	"ACCEL_STRENGTH": 20,
+	"ROTATION_STRENGTH": 5,
+	"MAX_SPEED": 600,
+	"BOUNCE_COEFF": 1
+}
+
+const SLIDER = {
+	"INITIAL_SPEED": 0,
+	"FRICTION": 4,
+	"ACCEL_STRENGTH": 30,
+	"ROTATION_STRENGTH": 3,
+	"MAX_SPEED": 600,
+	"BOUNCE_COEFF": 1
+}
+
+const BOUNCER = {
+	"INITIAL_SPEED": 0,
+	"FRICTION": 20,
+	"ACCEL_STRENGTH": 18,
+	"ROTATION_STRENGTH": 7,
+	"MAX_SPEED": 550,
+	"BOUNCE_COEFF": 1.5
+}
+
+var ship = STANDARDSHIP
 var acceleration = Vector2.ZERO
 var rotation_input = 0
 var accel_input = 0
@@ -40,13 +63,13 @@ func _process(_delta):
 		
 func _physics_process(delta):
 	_get_input()
-	rotation += ROTATION_STRENGTH * rotation_input * delta
+	rotation += ship["ROTATION_STRENGTH"] * rotation_input * delta
 
-	if velocity.length() > FRICTION * delta:
-		velocity = velocity - FRICTION * delta * velocity.normalized()
+	if velocity.length() > ship["FRICTION"] * delta:
+		velocity = velocity - ship["FRICTION"] * delta * velocity.normalized()
 	velocity += transform.x * accel_input
-	if velocity.length() > MAX_SPEED:
-		velocity = (velocity / velocity.length()) * MAX_SPEED
+	if velocity.length() > ship["MAX_SPEED"]:
+		velocity = (velocity / velocity.length()) * ship["MAX_SPEED"]
 
 	var collision_info = move_and_collide(velocity * delta)
 
@@ -54,7 +77,7 @@ func _physics_process(delta):
 		var overlap_depth = collision_info.get_depth()
 		var collision_normal = collision_info.get_normal()
 		if bounce_timer == 0:
-			velocity = velocity.bounce(collision_normal)
+			velocity = ship["BOUNCE_COEFF"] * velocity.bounce(collision_normal)
 			collision_shape.set_disabled(true)
 			
 			# Try to ensure we're not gonna collide with the wall again straight away
@@ -70,12 +93,12 @@ func _physics_process(delta):
 # Receives input from the player
 func _get_input():
 	rotation_input = Input.get_axis("left", "right")
-	accel_input = ACCEL_STRENGTH * Input.get_axis("down", "up")
+	accel_input = ship["ACCEL_STRENGTH"] * Input.get_axis("down", "up")
 
 func _on_game_restarted():
 	position = _racetrack.get_start_position()
 	rotation = 0.0
-	velocity = Vector2(INITIAL_SPEED * cos(deg_to_rad(rotation)), INITIAL_SPEED * sin(deg_to_rad(rotation)))
+	velocity = Vector2(ship["INITIAL_SPEED"] * cos(deg_to_rad(rotation)), ship["INITIAL_SPEED"] * sin(deg_to_rad(rotation)))
 	lap_count = 0
 	max_lap = 0
 	lap_progress = 0.0
